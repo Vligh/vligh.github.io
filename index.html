@@ -40,8 +40,19 @@
                         oLi[i].className='';
                     }
                     this.className='act';
+                    if(this.index==9){
+                        alert("还没定义。哈哈，你再点一次右边的按钮。");
+                    }
+                    else if(this.index==10){
+                        alert("你还真点。最后一个有惊喜！");
+                    }
+                    else if(this.index==11){
+                        window.open("text-shadow阴影效果.html");
+                    }
+                    else{
                     oDiv1.innerHTML='<h2>第'+(this.index+1)+
                     '句</h2><p>'+oData[this.index]+'</p>';
+                    }
             };
         }
     };
@@ -60,6 +71,9 @@
         <li>7<p>seven</p></li>
         <li>8<p>eight</p></li>
         <li>9<p>nine</p></li>
+        <li>0<p></p></li>
+        <li>0<p></p></li>
+        <li>0<p></p></li>
     </ul>
     <div class="a1">
         <h2>满座</h2>
