@@ -1,84 +1,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>满座</title>
-    <style>
-        li { list-style: none; }
-        .rili{width: 242px;height: 500px;margin: auto;top: 22%;border: khaki;}
-        .rili ul{border:khaki;background: lightblue;padding: 1px;}
-        .rili li{width: 58px; height: 54px;background: honeydew;padding: 5px;margin: 5px;float: left;}
-        .rili .act{width: 58px; height: 54px;background: hotpink;}
-        .rili .a1 h2{font-family: '微软雅黑';color: lightgreen;text-shadow: 3px 3px 1px black;}
-        .rili .a1 p{font-family: '微软雅黑';color: yellow;text-shadow: 3px 3px 1px black;text-shadow: 3px 3px 1px black;}
-    </style>
-    <script>
-        oData=[
-        "擦掉桌面上积下的灰",
-	    "对是非也没多说几嘴",
-	    "都以为看懂了真伪",
-    	"能把握发火和颓废",
-	    "年轻再疯狂都不为过",
-    	"出走几次也有处可躲",
-    	"带着自卑讨着生活",
-    	"庆幸没有无事可做",
-    	"要跟自己认错话不多",
-        ];
-        window.onload=function(){
-            var oDiv=document.getElementById('div1');
-            var oLi=oDiv.getElementsByTagName('li');
-            var oUl=oDiv.getElementsByTagName('ul');
-            var oDiv1=oDiv.getElementsByTagName('div')[0];
+	<meta charset="utf-8">
+    <title>无缝滚动</title>
+<style>
+*{margin: 0;padding: 0;}
+#div1{width: 712px;height: 108px;background: blueviolet;margin: 100px auto;
+position: relative;overflow: hidden;}
+#div1 ul {position: absolute;left: 0;top: 0;}
+#div1 ul li {float: left;width: 178px;height: 108px;list-style: none;}
+</style>
+<script>
+window.onload=function(){
+    var oDiv=document.getElementById('div1');
+    var aUl=oDiv.getElementsByTagName('ul')[0];
+    var aLi=oDiv.getElementsByTagName('li'); 
 
-            for(var i=0;i<oLi.length;i++)
-            {
-                oLi[i].index=i;
-                oLi[i].onclick=function()
-                {
-                    for(i=0;i<oLi.length;i++)
-                    {
-                        oLi[i].className='';
-                    }
-                    this.className='act';
-                    if(this.index==9){
-                        alert("还没定义。哈哈，你再点一次右边的按钮。");
-                    }
-                    else if(this.index==10){
-                        alert("你还真点。最后一个有惊喜！");
-                    }
-                    else if(this.index==11){
-                        window.open("text-shadow阴影效果.html");
-                    }
-                    else{
-                    oDiv1.innerHTML='<h2>第'+(this.index+1)+
-                    '句</h2><p>'+oData[this.index]+'</p>';
-                    }
-            };
+    var dicection=2;
+
+    aUl.innerHTML=aUl.innerHTML+aUl.innerHTML;
+    aUl.style.width=aLi[0].offsetWidth*aLi.length+'px';
+
+    function move(){
+        if(aUl.offsetLeft<(-aUl.offsetWidth/2)){
+            aUl.style.left='0';
         }
-    };
-    </script>
+        if(aUl.offsetLeft>0){
+            aUl.style.left=-aUl.offsetWidth/2+'px';
+        }
+        aUl.style.left=aUl.offsetLeft+dicection+'px';
+    }
+
+    var timer=setInterval(move,30);
+    div1.onmouseover=function(){
+        clearInterval(timer);
+    }
+    div1.onmouseout=function(){
+        timer=setInterval(move,30);
+    }
+
+    document.getElementsByTagName('input')[0].onclick=function(){
+        dicection=-3;
+    }
+    document.getElementsByTagName('input')[1].onclick=function(){
+        dicection=3;
+    }
+    document.getElementsByTagName('input')[2].onclick=function(){
+        if(dicection>0){
+        dicection=5;
+        }
+        else{dicection=-5;}
+    }
+    document.getElementsByTagName('input')[3].onclick=function(){
+        if(dicection>0){
+        dicection=2;
+        }
+        else{dicection=-2;}
+    }
+    document.getElementsByTagName('input')[4].onclick=function(){
+        window.open("3练习时钟.html");
+    }
+};
+</script>
 </head>
 <body>
-<div id="div1" class="rili" style="background-image:url(Picture/mei.jpg)
-						;background-position:center;">
-    <ul>
-        <li class="act">1<p>one</p></li>
-        <li>2<p>two</p></li>
-        <li>3<p>three</p></li>
-        <li>4<p>four</p></li>
-        <li>5<p>five</p></li>
-        <li>6<p>six</p></li>
-        <li>7<p>seven</p></li>
-        <li>8<p>eight</p></li>
-        <li>9<p>nine</p></li>
-        <li>0<p></p></li>
-        <li>0<p></p></li>
-        <li>0<p></p></li>
-    </ul>
-    <div class="a1">
-        <h2>满座</h2>
-        <p>李荣浩</p>
-    </div>
+    <input type="button" value="向左">
+    <input type="button" value="向右">
+    <input type="button" value="加速">
+    <input type="button" value="减速">
+    <input type="button" value="时间">
+<!-- <a href="#"></a>
+<a href="#"></a> -->
+<div id="div1">
+<ul>
+    <li><img src="img2/1.jpg"></li>
+    <li><img src="img2/2.jpg"></li>
+    <li><img src="img2/3.jpg"></li>
+    <li><img src="img2/4.jpg"></li>
+</ul>
 </div>
 </body>
 </html>

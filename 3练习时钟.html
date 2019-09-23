@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <title>练习时钟</title>
+<script>
+function Do(n){//遇到个位的前面加个0
+    if(n<10){return '0'+n;}
+    else{return ''+n;}
+}
+window.onload=function(){
+    var oImg=document.getElementsByTagName('img');
+
+    function clock(){
+        var oDate=new Date();//获取当前时间（包括下一行）
+        var str=Do(oDate.getHours())+Do(oDate.getMinutes())+Do(oDate.getSeconds());
+        for(var i=0;i<oImg.length;i++){
+            oImg[i].src='images/'+str[i]+'.png';//记着写oImg[i].
+        };}
+    setInterval(clock,1000);
+    clock();
+    
+};
+</script>
+</head>
+<body style="background: black;color:blanchedalmond;font-size: 55px">
+<img src="images/0.png"/>
+<img src="images/0.png"/>&nbsp:
+<img src="images/0.png"/>
+<img src="images/0.png"/>&nbsp:
+<img src="images/0.png"/>
+<img src="images/0.png"/>
+</body>
+</html>
